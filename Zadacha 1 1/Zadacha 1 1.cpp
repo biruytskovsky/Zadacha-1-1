@@ -14,6 +14,7 @@ int main() {
     
         return 0;
 }
+
 // | bool | 1 | false | true                                                      
 //| char | 1 | -128 | 127                                                       
 //| unsigned char | 1 | 0 | 255                                                       
@@ -94,6 +95,7 @@ int main() {
     std::cout << "longDoubleVar: " << std::setprecision(std::numeric_limits<long double>::max_digits10) << longDoubleVar << std::endl;
 
     return 0;
+}
 
     // задание 3
 
