@@ -1,111 +1,39 @@
-﻿
-
+﻿#include <iostream>
 #include <limits>
-
-
-#include <iostream>
-// 1)Составьте таблицу с основными типами данных в С++, их размером и мин/макс значениями.
-int main() {
-    std::cout << "Size of int: " << sizeof(int) << " bytes ";
-
-    std::cout << "Minimum value of int: " << std::numeric_limits<int>::lowest();
-      
-    std::cout << "Maximum value of int: " << std::numeric_limits<int>::max();
-    
-        return 0;
-}
-
-// | bool | 1 | false | true                                                      
-//| char | 1 | -128 | 127                                                       
-//| unsigned char | 1 | 0 | 255                                                       
-//| signed char | 1 | -128 | 127                                                       
-//| short | 2 | -32, 768 | 32, 767                                                    
-//| unsigned short | 2 | 0 | 65, 535                                                    
-//| int | 4 | -2, 147, 483, 648 | 2, 147, 483, 647                                            
-//| unsigned int | 4 | 0 | 4, 294, 967, 295                                             
-//| long | 4 | -2, 147, 483, 648 | 2, 147, 483, 647                                             
-//| unsigned long | 4 | 0 | 4, 294, 967, 295                                             
-//| long long | 8 | -9, 223, 372, 036, 854, 775, 808 | 9, 223, 372, 036, 854, 775, 807                                 
-//| unsigned long long | 8 | 0 | 18, 446, 744, 073, 709, 551, 615                                
-//| float | 4 | 1.17549e-38 | 3.40282e+38                                               
-//| double | 8 | 2.22507e-308 | 1.79769e+308                                              
-//| long double | 16 | 3.3621e-4932 | 1.18973e+4932 
-
-// 2)Напишите программу, в которой продемонстрируйте вывод в консоль переменных каждого из типов из п.1.
+using namespace std;
 
 int main() {
-    // bool
-    bool boolVar = true;
-    std::cout << "boolVar: " << boolVar << std::endl;
+    // Таблица основных типов данных в C++
+    cout << "Data type      | Size in bytes | Minimum value | Max value" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
+    cout << "short           | " << sizeof(short) << " byte        | " << numeric_limits<short>::min() << "                        | " << numeric_limits<short>::max() << endl;
+    cout << "int             | " << sizeof(int) << " byte         | " << numeric_limits<int>::min() << "                       | " << numeric_limits<int>::max() << endl;
+    cout << "long            | " << sizeof(long) << " byte        | " << numeric_limits<long>::min() << "                      | " << numeric_limits<long>::max() << endl;
+    cout << "long long       | " << sizeof(long long) << " byte   | " << numeric_limits<long long>::min() << "                 | " << numeric_limits<long long>::max() << endl;
+    cout << "float           | " << sizeof(float) << " byte       | " << numeric_limits<float>::min() << "                     | " << numeric_limits<float>::max() << endl;
+    cout << "double          | " << sizeof(double) << " byte     | " << numeric_limits<double>::min() << "                    | " << numeric_limits<double>::max() << endl;
+    cout << "char            | " << sizeof(char) << " byte        | " << static_cast<int>(numeric_limits<char>::min()) << "                       | " << static_cast<int>(numeric_limits<char>::max()) << endl;
 
-    // char
+    // Демонстрация переменных каждого типа данных
+    short shortVar = 32767;
+    int intVar = 2147483647;
+    long longVar = 9223372036854775807;
+    float floatVar = 3.40282e+38;
+    double doubleVar = 1.79769e+308;
     char charVar = 'A';
-    std::cout << "charVar: " << charVar << std::endl;
 
-    // unsigned char
-    unsigned char ucharVar = 200;
-    std::cout << "ucharVar: " << +ucharVar << std::endl;
+    cout << "\nDemonstration of variables of each data type:" << endl;
+    cout << "short: " << shortVar << endl;
+    cout << "int: " << intVar << endl;
+    cout << "long: " << longVar << endl;
+    cout << "float: " << floatVar << endl;
+    cout << "double: " << doubleVar << endl;
+    cout << "char: " << charVar << endl;
 
-    // signed char
-    signed char scharVar = -50;
-    std::cout << "scharVar: " << +scharVar << std::endl;
-
-    // short
-    short shortVar = -3000;
-    std::cout << "shortVar: " << shortVar << std::endl;
-
-    // unsigned short
-    unsigned short ushortVar = 60000;
-    std::cout << "ushortVar: " << ushortVar << std::endl;
-
-    // int
-    int intVar = -2000000;
-    std::cout << "intVar: " << intVar << std::endl;
-
-    // unsigned int
-    unsigned int uintVar = 4000000;
-    std::cout << "uintVar: " << uintVar << std::endl;
-
-    // long
-    long longVar = -4000000000;
-    std::cout << "longVar: " << longVar << std::endl;
-
-    // unsigned long
-    unsigned long ulongVar = 8000000000;
-    std::cout << "ulongVar: " << ulongVar << std::endl;
-
-    // long long
-    long long longLongVar = -900000000000000;
-    std::cout << "longLongVar: " << longLongVar << std::endl;
-
-    // unsigned long long
-    unsigned long long ulongLongVar = 1800000000000000;
-    std::cout << "ulongLongVar: " << ulongLongVar << std::endl;
-
-    // float
-    float floatVar = 3.14f;
-    std::cout << "floatVar: " << floatVar << std::endl;
-
-    // double
-    double doubleVar = 2.71828;
-    std::cout << "doubleVar: " << doubleVar << std::endl;
-
-    // long double
-    long double longDoubleVar = 1.234567890123456789L;
-    std::cout << "longDoubleVar: " << std::setprecision(std::numeric_limits<long double>::max_digits10) << longDoubleVar << std::endl;
-
+    // Смоделировать ситуацию переполнения для типа данных int
+    int maxIntValue = 2147483647;
+    int overflowValue = maxIntValue + 1;
+    cout << "\nOverflow for type int: " << overflowValue << endl;
     return 0;
 }
-
-    // 3)Смоделируйте ситуацию, когда тип данных переполнится. Выведите на экран результат. Попробуйте объяснить произошедшее.
-
-    int main() {
-        int maxIntValue = 2147483647;
-        int overflowValue = maxIntValue + 1;
-        cout << "Overflow value: " << overflowValue << endl;
-        return 0;
-    }
-
-   
-    // В большинстве случаев, переменная overflowValue примет отрицательное значение, ибо произойдет переполнение значений. 
-    // Это происходит из-за того, что тип данных int, который обычно занимает 4 байта и может хранить значения от -2,147,483,648 до 2,147,483,647 для 32-битных систем.
+//  Это происходит из-за того, что тип данных int, который обычно занимает 4 байта и может хранить значения от -2,147,483,648 до 2,147,483,647 для 32-битных систем.
